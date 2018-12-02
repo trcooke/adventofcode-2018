@@ -1,3 +1,5 @@
+from sets import Set
+
 changes = open("input")
 
 freqs = []
@@ -10,7 +12,7 @@ for freq in freqs:
 
 print final_freq
 
-seen = [0]
+seen = Set([0])
 final = 0
 keep_going = True
 while keep_going:
@@ -20,4 +22,4 @@ while keep_going:
             print final
             keep_going = False
             break
-        seen.append(final)
+        seen.add(final)
