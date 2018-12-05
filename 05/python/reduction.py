@@ -5,21 +5,18 @@ file = open("input")
 polymers = list(file.read().strip())
 
 def react(polymers):
-    more = True
-    start = 0
-    length = len(polymers)
-    while more:
-        more = False
-        for i in range(start, length - 1):
-            if (polymers[i].upper() == polymers[i+1].upper()) and (polymers[i].isupper() != polymers[i+1].isupper()):
-                del polymers[i:i+2]
-                #polymers = polymers[0:i-1]+polymers[i+1:]
-                more = True
-                if i > 0:
-                    start = i - 1
-                length = length - 2
-                break
-    return polymers
+    reacted = []
+    for polymer in polymers:
+        if len(reacted) == 0:
+            reacted.append(polymer)
+            continue
+        lastreacted = reacted.pop()
+        if (polymer.upper() == lastreacted.upper()) and (polymer.isupper() != lastreacted.isupper()):
+            continue
+        else:
+            reacted.append(lastreacted)
+            reacted.append(polymer)
+    return reacted
 
 print len(react(polymers))
 
